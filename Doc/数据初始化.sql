@@ -1,4 +1,4 @@
-USE ADS
+USE DDD
 GO
 
 --初始化超级管理员
