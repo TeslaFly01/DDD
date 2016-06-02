@@ -40,8 +40,6 @@ namespace DDD.Application.MVC.Controllers
 
         public ActionResult Index()
         {
-            //var list=_userInfoService.GetList("A", 2);
-
             return View("~/Views/Index.cshtml");
         }
 
@@ -49,8 +47,7 @@ namespace DDD.Application.MVC.Controllers
         {
             return View("~/Views/IndexFrame.cshtml");
         }
-
-        //[DonutOutputCache(Duration = 60)]
+        
         public ActionResult Main()
         {
             return View("~/Views/Main.cshtml");
@@ -102,20 +99,24 @@ namespace DDD.Application.MVC.Controllers
         //[ValidateAntiForgeryToken(Salt = SystemHelper.AntiForgeryTokenSalt)]
         public ActionResult Login(Login model)
         {
-            ShowResultModel rs = new ShowResultModel();
+            var srm = new ShowResultModel();
 
             if (ModelState.IsValid)
             {
                 SystemAdmin user = _systemAdminService.GetByNameAndPassword(model.SAName, model.SAPwd);
-                if (user != null)
+
+                try
                 {
+                    if (user == null)
+                    {
+                        throw new InvalidOperationException("用户名或密码错误!");
+                    }
                     if (!user.IsEnable)
                     {
-                        rs.TipMsg = "该账户已被禁用！";
-                        return Json(rs);
+                        throw new InvalidOperationException("该账户已被禁用");
                     }
 
-                    rs.IsSuccess = true;
+                    srm.IsSuccess = true;
 
                     var userModules = _systemAdminService.GetsysAdminModule(user);
                     // user data:
@@ -124,52 +125,58 @@ namespace DDD.Application.MVC.Controllers
                     {
                         var ulist =
                             userModules.Where(x => !string.IsNullOrEmpty(x.FormRoleName))
-                                       .Select(x => x.FormRoleName)
-                                       .Distinct()
-                                       .ToArray();
+                                .Select(x => x.FormRoleName)
+                                .Distinct()
+                                .ToArray();
                         if (ulist.Any())
                             userDate = string.Join(",", ulist) + ";";
                     }
 
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                         1,
-                        user.SAName,//user.Name
+                        user.SAName, //user.Name
                         DateTime.Now,
                         DateTime.Now.Add(FormsAuthentication.Timeout),
-                        false,//model.RememberMe,
+                        false, //model.RememberMe,
                         // user data:
                         userDate
                         //new string[] { "admin", "corp" }.Aggregate((i, j) => i + "," + j) + ";"
-                            + IPHelper.getIPAddr() + ";"
-                        + user.SAID.ToString() + ";"
+                        + IPHelper.getIPAddr() + ";"
+                        + user.SAID + ";"
                         + user.SANickName
                         );
 
                     HttpCookie cookie = new HttpCookie(
                         FormsAuthentication.FormsCookieName,
                         FormsAuthentication.Encrypt(ticket));
-                    cookie.HttpOnly = true;//不能通过客户端脚本访问cookie
+                    cookie.HttpOnly = true; //不能通过客户端脚本访问cookie
                     Response.Cookies.Add(cookie);
 
                     //登录成功更新访问时间
                     _systemAdminService.UpdateLogonInfo(user);
 
-                    _adminLogService.Log(user, "管理员登录", "帐号：" + user.SAName + " || 姓名：" + user.SANickName + " || 上次访问IP:" + user.LastIP + " || 上次访问时间:" + user.LastTime.ToString() + " || 当前访问IP:" + user.CurrentIP + " || 当前访问时间:" + user.CurrentTime.ToString() + " || 登录次数:" + user.LoginTimes.ToString());
+                    _adminLogService.Log(user, "管理员登录","帐号：" + user.SAName + " || 姓名：" + user.SANickName + " || 上次访问IP:" + user.LastIP +" || 上次访问时间:" + user.LastTime + " || 当前访问IP:" + user.CurrentIP + " || 当前访问时间:" +user.CurrentTime + " || 登录次数:" + user.LoginTimes);
 
+                }
+                catch (InvalidOperationException e)
+                {
+                    srm.TipMsg = e.Message;
+                }
+                catch (Exception)
+                {
+                    srm.TipMsg = "网络错误，请稍后再试！";
+                }
+                finally
+                {
                     _adminCacheService.Remove(AdminCacheService.SysAdmin_Current_prefix + user.SAName);
                     _adminCacheService.Add(AdminCacheService.SysAdmin_Current_prefix + user.SAName, user, TimeSpan.FromHours(2));
                 }
-                else
-                {
-                    rs.TipMsg = "用户名或密码错误！";
-                }
-
             }
             else
             {
-                rs.TipMsg = "数据有效性验证失败！";
+                srm.TipMsg = "数据有效性验证失败！";
             }
-            return Json(rs);
+            return Json(srm);
 
         }
 
