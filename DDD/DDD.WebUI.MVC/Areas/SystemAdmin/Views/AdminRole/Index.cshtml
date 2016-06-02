@@ -1,0 +1,13 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@model IEnumerable<AdminRole>
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.CurrentPosition = "管理员 -> 管理员角色";
+    ViewBag.Title = "角色列表";
+}
+@section Js {
+    <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminRole.min.js?20150122")" type="text/javascript"></script>
+}
+<div id="divRoleList">
+    @Html.Partial("_List", Model)
+</div>

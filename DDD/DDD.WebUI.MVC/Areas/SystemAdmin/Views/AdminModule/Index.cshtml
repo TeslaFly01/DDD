@@ -1,0 +1,21 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@model IEnumerable<AdminModule>
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.CurrentPosition = "系统设置 -> 功能模块管理";
+    ViewBag.Title = "功能模块列表";
+}
+@section Styles{
+    <style type="text/css">
+        body
+        {
+            background-color: #F7FBFD;
+        }
+    </style>
+}
+@section Js {
+    <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminModule.min.js?20160122")" type="text/javascript"></script>
+}
+<div id="divModuleList">
+    @Html.Partial("_List", Model)
+</div>

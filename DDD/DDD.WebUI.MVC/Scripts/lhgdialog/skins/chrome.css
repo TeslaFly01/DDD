@@ -1,0 +1,50 @@
+﻿/*!
+ * lhgcore Dialog Plugin StyleSheet
+ * Copyright (c) 2009 - 2011 By Li Hui Gang
+ */
+html{_background-image:url(about:blank);_background-attachment:fixed;}
+.lhgdialog_chrome{position:absolute;padding:0;margin:0;font:12px Tahoma,Arial,sans-serif;}
+
+.lhgdg_leftTop_chrome,.lhgdg_rightTop_chrome,.lhgdg_leftBottom_chrome,.lhgdg_rightBottom_chrome,.lhgdg_left_chrome,.lhgdg_right_chrome,.lhgdg_icon_chrome,a.lhgdg_xbtn_chrome,a.lhgdg_maxbtn_chrome,a.lhgdg_rebtn_chrome,a.lhgdg_minbtn_chrome{background-image:url(chrome/lhgdg_bg.gif);background-repeat:no-repeat;}
+
+.lhgdg_leftTop_chrome{width:5px;height:26px;background-position:-139px -8px;}
+.lhgdg_rightTop_chrome{width:5px;background-position:-146px -8px;}
+.lhgdg_leftBottom_chrome{width:5px;height:5px;background-position:-139px -2px;}
+.lhgdg_rightBottom_chrome{width:5px;background-position:-146px -2px;cursor:nw-resize;}
+
+.lhgdg_left_chrome,.lhgdg_right_chrome{background-repeat:repeat-y;}
+.lhgdg_left_chrome{background-position:-153px 0;}
+.lhgdg_right_chrome{background-position:-158px 0;}
+
+.lhgdg_top_chrome,.lhgdg_bottom_chrome{background:url(chrome/lhgdg_x.gif) repeat-x;font-size:0;}
+.lhgdg_top_chrome{background-position:0 0;cursor:move;}
+.lhgdg_bottom_chrome{background-position:0 -26px;}
+
+.lhgdg_title_icon_chrome{height:26px;}
+.lhgdg_icon_chrome{float:left;background-position:-121px 0;width:16px;height:16px;margin-top:4px;}
+.lhgdg_title_chrome{float:left;color:#fff;font-weight:bold;font-size:12px;height:16px;margin-top:5px;margin-top:7px\0;padding-left:5px;}
+
+a.lhgdg_xbtn_chrome,a.lhgdg_maxbtn_chrome,a.lhgdg_rebtn_chrome,a.lhgdg_minbtn_chrome{position:absolute;display:block;cursor:default;height:18px;top:1px;}
+a.lhgdg_xbtn_chrome{background-position:-75px 0;right:5px;width:44px;}
+a.lhgdg_xbtn_chrome:hover{background-position:-75px -18px;}
+a.lhgdg_maxbtn_chrome{background-position:-25px 0;right:49px;width:25px}
+a.lhgdg_maxbtn_chrome:hover{background-position:-25px -18px;}
+a.lhgdg_rebtn_chrome{background-position:-50px 0;right:49px;width:25px}
+a.lhgdg_rebtn_chrome:hover{background-position:-50px -18px;}
+a.lhgdg_minbtn_chrome{background-position:0 0;right:74px;width:25px;}
+a.lhgdg_minbtn_chrome:hover{background-position:0 -18px;}
+
+.lhgdg_inbox_chrome,.lhgdg_load_chrome{width:100%;height:100%;background-color:#fff;overflow:auto;}
+.lhgdg_load_chrome{text-align:center;font-weight:bold;}
+.lhgdg_load_chrome span{padding-left:20px;height:16px;background:url(chrome/wait.gif) no-repeat center left;font-size:12px;}
+
+.lhgdg_btnBar_chrome{height:29px;background-color:#f6f6f6;border-top:1px solid #dadee5;}
+.lhgdg_btn_div_chrome{float:right;}
+a.lhgdg_button_chrome,a.lhgdg_button_chrome em{display:inline-block;height:21px;background:url(chrome/lhgdg_btn.gif) no-repeat;}
+a.lhgdg_button_chrome{text-decoration:none;background-position:0 0;padding-left:15px;color:#000;cursor:default;margin-right:5px;}
+a.lhgdg_button_chrome:hover{background-position:0 -42px;}
+a.lhgdg_button_chrome em{font-style:normal;background-position:right -21px;padding-right:15px;line-height:21px;line-height:24px\0;font-size:12px;}
+a.lhgdg_button_chrome:hover em{background-position:right -63px;}
+
+.lhgdg_lockScroll{*overflow:hidden;}
+.lhgdg_lockScroll body{overflow:hidden;padding-right:17px;}

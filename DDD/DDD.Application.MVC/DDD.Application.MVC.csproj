@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6ADC02FD-1A32-4C4F-ADA0-6F2C09D72764}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DDD.Application.MVC</RootNamespace>
+    <AssemblyName>DDD.Application.MVC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevTrends.MvcDonutCaching">
+      <HintPath>..\packages\MvcDonutCaching.1.3.0\lib\net40\DevTrends.MvcDonutCaching.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AdminActionController.cs" />
+    <Compile Include="Controllers\AdminLogController.cs" />
+    <Compile Include="Controllers\AdminModuleController.cs" />
+    <Compile Include="Controllers\AdminRoleController.cs" />
+    <Compile Include="Controllers\BaseAdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SystemAdminController.cs" />
+    <Compile Include="Filters\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Filters\ExcAdminAuthAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DevTrends.MvcDonutCaching.README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Application.Model\DDD.Application.Model.csproj">
+      <Project>{d148f5b0-6a5e-4260-a49d-9d6d45146241}</Project>
+      <Name>DDD.Application.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Application.MVC.Core\DDD.Application.MVC.Core.csproj">
+      <Project>{bc2f1bd8-1a5d-4ebe-bcd3-861a4dbab527}</Project>
+      <Name>DDD.Application.MVC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Application.Service\DDD.Application.Service.csproj">
+      <Project>{a1b865bd-5740-499c-ae6a-ff41f78837e4}</Project>
+      <Name>DDD.Application.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Domain.MainModule\DDD.Domain.MainModule.csproj">
+      <Project>{01326854-451d-4707-82ee-f71ebf07db52}</Project>
+      <Name>DDD.Domain.MainModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Domain.Model\DDD.Domain.Model.csproj">
+      <Project>{23e0fe69-d44f-4174-876c-9fa6d91eb274}</Project>
+      <Name>DDD.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj">
+      <Project>{5a0ca442-0f72-48e9-891b-aece4f48bc4b}</Project>
+      <Name>DDD.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Common\DDD.Infrastructure.CrossCutting.Common.csproj">
+      <Project>{188724aa-e509-4490-871f-cce0755a1f1f}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.IOC\DDD.Infrastructure.CrossCutting.IOC.csproj">
+      <Project>{8f058e74-4869-417d-8110-ac94b4b8a468}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Resources\DDD.Infrastructure.CrossCutting.Resources.csproj">
+      <Project>{8f7f743e-d1e2-4876-be30-1206ceb8ba32}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Utility\DDD.Utility.csproj">
+      <Project>{d7d1cf1e-a5cb-44e3-a7e3-a7232da87f1a}</Project>
+      <Name>DDD.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvcPager\MvcPager.csproj">
+      <Project>{32b7b7b2-15f9-48c9-99e2-34d3bed968d9}</Project>
+      <Name>MvcPager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

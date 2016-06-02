@@ -1,0 +1,38 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@model IEnumerable<AdminModule>
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+    ViewBag.Title = "角色权限设置";
+}
+@section Js {
+    <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminRole.Setting.min.js?20150122")" type="text/javascript"></script>
+}
+@if (Model != null && Model.Any())
+{
+    bool isfirst = true;
+    var ARID = (int) ViewBag.ARID;
+    @Html.Hidden("hidARID", ARID)
+    <div class="tab-container">
+        <ul class="tab-nav clearfix">
+            @foreach (var adm in Model)
+            {
+                if (isfirst)
+                {
+                    isfirst = false;
+                    <li class="active"><a href="javascript:void(0)" onclick=" getmoduleandaction(@adm.AMID, @ARID) ">@adm.ModuleName</a>
+                        @Html.Hidden("hidAMID", adm.AMID)
+                    </li>
+                }
+                else
+                {
+                    <li><a href="javascript:void(0)" onclick="getmoduleandaction(@adm.AMID, @ARID)">@adm.ModuleName</a></li>
+                }
+            }
+        </ul>
+        <div id="div_loading" style="position: absolute; display: none; top: 6%; right: 6%;">
+            <img src="@Url.Content("~/Content/images/loading.gif")" />数据加载中...
+        </div>
+        <div class="tab-content clearfix" id="div_SettingModules">
+        </div>
+    </div>
+}

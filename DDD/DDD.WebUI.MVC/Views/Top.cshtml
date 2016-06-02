@@ -1,0 +1,49 @@
+﻿@using DDD.Application.Service.Common
+@using DDD.Domain.Model.Entities.Admin
+@using DDD.Infrastructure.CrossCutting.Common
+@{
+    ViewBag.Title = "Top";
+    Layout = null;
+    var currAdmin=new CurrentAdminEx();
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>后台管理系统</title>
+    <link href="@Url.Content("~/Content/css/sys.css?v=20140414")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Global.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/lhgdialog/lhgcore.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/lhgdialog/lhgdialog.min.js?s=chrome,facebook")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/mainBase.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/getRequest.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Top.min.js?v=20140317")" type="text/javascript" ></script>
+    <!--[if IE 6]><script src="@Url.Content("~/Scripts/DD_belatedPNG.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">DD_belatedPNG.fix('.logo-companyname');</script>
+    <![endif]-->
+</head>
+<body>
+    <div class="top">
+        <div class="top-logo clearfix">
+          @*  <img class="logo-companyname" src="/Content/images/logo-white.png">*@
+            <div class="top-nav ">
+                <ul class="clearfix">                  
+                    <li class="user-info">
+                        <span>欢迎您，@currAdmin.SANickName (@currAdmin.SAName)</span>
+                        <span>@currAdmin.LoginedTime.ToString("yyyy年MM月dd日 HH:mm:ss")</span>
+                        @*<span>所属门店：@currUser.ShopName</span>
+                        <span>所属商家：@currUser.CorpName</span>*@
+                     </li>
+                    <li><a class="nav_refresh" href="javascript:" onclick="Refresh();" title="刷新"></a></li>
+                    <li><a class="nav_home" href="javascript:" onclick="goHome();" title="系统主页"></a></li>
+                    <li><a class="nav_user" href="javascript:" onclick="getRequestId('/Systemadmin/SystemAdmin/AccManIndex');" title="账户管理"></a></li>
+@*                    <li><a class="nav_help" href="javascript:" onclick="goHelp();" title="在线帮助"></a></li>*@
+                    <li>@Ajax.ActionLink(" ", "Logout",null , new AjaxOptions() { HttpMethod = "Get", Confirm = "确定退出吗？" }, new { @class = "nav_fhui", @title = "退出" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hid_corpSalesOrderTipFlag" value="@ViewBag.CorpSalesOrderTip" />
+</body>
+</html>

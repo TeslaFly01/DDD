@@ -1,0 +1,37 @@
+﻿@helper FormatLetterRedGreen(bool flag, bool ColorReverse = false)
+    {
+        if (flag)
+        {
+    <span class="@if (ColorReverse)
+                 {
+                     @:font-red
+        }
+                 else
+                 {
+          @:font-green
+     }">是</span>
+        }
+        else
+        {
+    <span class="@if (ColorReverse)
+                 {
+                    @:font-green
+       }
+                 else
+                 {
+       @:font-red
+       }">否</span>
+        }
+}
+
+@helper FormatSex(bool sex)
+    {
+        if (sex)
+        {
+    @:男
+        }
+        else
+        {
+    @:女
+        }
+}

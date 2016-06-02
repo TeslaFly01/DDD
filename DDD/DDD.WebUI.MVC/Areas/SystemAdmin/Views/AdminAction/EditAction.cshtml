@@ -1,0 +1,58 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+
+@model AdminAction
+
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+    ViewBag.Title = "修改管理员操作权限";
+}
+
+ @section Js {
+ <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.ext.min.js")" type="text/javascript"></script>
+ <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminAction.Edit.min.js")" type="text/javascript"></script>
+  }
+
+    <!-- 提交表单 -->
+@using (Ajax.BeginForm("EditAction", new AjaxOptions() { HttpMethod = "Post", OnBegin = "AjaxStart", OnFailure = "AjaxFailure", OnSuccess = "AjaxSuccess" }))
+{
+     <table class="table-style" frame="border" cellspacing="1" style="width:98%;" align="center">
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.OptName)</td>    
+            <td class="box-li2">
+                @Html.HiddenFor(aa=>aa.AMID)
+                @Html.HiddenFor(aa=>aa.AAID)
+                @Html.HiddenFor(aa => aa.SortFlag)
+                @Html.TextBoxFor(aa => aa.OptName,new {style="width: 160px;"})
+                @Html.ValidationMessageFor(aa => aa.OptName)
+            </td>
+          </tr>
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.ControllerName)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(aa => aa.ControllerName,new {style="width: 160px;"})
+                @Html.ValidationMessageFor(aa => aa.ControllerName)
+            </td>    
+          </tr>
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.ActionName)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(aa=>aa.ActionName,new {style="width: 160px;"})
+                @Html.ValidationMessageFor(aa => aa.ActionName)
+           </td>    
+          </tr> 
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.Description)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(aa => aa.Description,new {style="width: 160px;"})
+                @Html.ValidationMessageFor(aa => aa.Description)
+            </td>    
+          </tr> 
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.Weight)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(aa => aa.Weight,new {style="width: 160px;"})
+                @Html.ValidationMessageFor(aa => aa.Weight)
+            </td>  
+          </tr> 
+        </table>
+}

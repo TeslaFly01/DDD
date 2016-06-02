@@ -1,0 +1,15 @@
+<smil> 
+<head> 
+<meta name="title" content=""/> 
+<layout> 
+<root-layout title="" width="240" height="320" background-color="#FFFFFF" color="#FF000008" font-size="8" font-family="Tahoma" font-style="" font-variant="" font-weight=""/> 
+<region id="id1_img1" z-index="0" left="0%" top="0%" width="100%" height="70%" background-color="#FFFFFF" color="#FF000008" font-size="8" font-family="Tahoma" font-style="" font-variant="" font-weight="" fit="meet"/>
+<region id="id1_text" z-index="0" left="0%" top="70%" width="100%" height="30%" background-color="#FFFFFF" color="#FF000008" font-size="8" font-family="Tahoma" font-style="" font-variant="" font-weight=""/>
+</layout> 
+</head>  
+<body><par dur="0s">
+<img region="id1_img1" src="{0}"/>
+<text region="id1_text" src="{1}"/>
+</par>
+</body> 
+</smil>

@@ -1,0 +1,6 @@
+@charset "gb2312";
+/* CSS Document */
+
+input[type="text"]{ width:220px; height:20px; line-height:20px; padding:0px 3px; border:1px #CC6633 solid; }
+input[type="password"]{ width:220px; height:20px; line-height:20px;padding:0px 3px;  border:1px #CC6633 solid; }
+

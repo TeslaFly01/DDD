@@ -1,0 +1,90 @@
+﻿@using DDD.Domain.Model.Entities.Admin
+@model AdminRole
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+    ViewBag.Title = "修改管理员角色";
+}
+@section Js{
+    <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminRole.Edit.min.js?2015012201")" type="text/javascript"></script>
+}
+@using (Ajax.BeginForm("Edit", new AjaxOptions() { HttpMethod = "Post", OnBegin = "AjaxStart", OnFailure = "AjaxFailure", OnSuccess = "AjaxSuccess" }))
+{
+    var adminmodules = (List<AdminModule>)ViewBag.Modules;
+    var checkedmodules = (List<AdminModule>)ViewBag.ModulesCheck;
+    @Html.Hidden("ModuleIds")
+    <div id="corpAccount" class="account-create clearfix">
+        <div class="clearfix">
+            <dl>
+                <dt>角色名称：</dt>
+                <dd>
+                    @Html.TextBoxFor(x => x.ARName)
+                    @Html.ValidationMessageFor(x => x.ARName)
+                    @Html.HiddenFor(x => x.ARID)
+                </dd>
+            </dl>
+        </div>
+        <div class="tree-view clearfix">
+            <div class="tree-head">
+                <label for="chkall">
+                    <input type="checkbox" id="chkall" />全选/反选</label>
+            </div>
+        </div>
+        @foreach (var adm in adminmodules.Where(x => x.FID == 0))
+        {
+            var ischecked = checkedmodules.Any(x => x.AMID == adm.AMID) ? "checked='checked'" : "";
+            <div class="tree-view clearfix">
+                <div class="tree-head">
+                    <label for="chk@{ @adm.AMID}">
+                        <input type="checkbox" id="chk@{ @adm.AMID}" name="moduleitem" value="@adm.AMID" onchange=" modulechange1(this) " @ischecked />@adm.ModuleName</label>
+                </div>
+                @foreach (var adm1 in adminmodules.Where(x => x.FID == adm.AMID))
+                {
+                    var ischecked1 = checkedmodules.Any(x => x.AMID == adm1.AMID) ? "checked='checked'" : "";
+                    <div class="tree-node">
+                        <label for="chk@{ @adm1.AMID}">
+                            <input type="checkbox" id="chk@{ @adm1.AMID}" name="moduleitem" value="@adm1.AMID" onchange=" modulechange2(this) " @ischecked1 />@adm1.ModuleName</label>
+                        <ul>
+                            @helper ShowCorpModule(List<AdminModule> usermodules, int fid, List<AdminModule> checkedmodules)
+                                {
+                                    var currmodules = usermodules.Where(x => x.FID == fid);
+                                    foreach (var adm2 in currmodules)
+                                    {
+                                        var ischecked2 = checkedmodules.Any(x => x.AMID == adm2.AMID) ? "checked='checked'" : "";
+                                        if (usermodules.Any(x => x.FID == adm2.AMID))
+                                        {
+                                <li>
+                                    <label for='chk@{@adm2.AMID}'>
+                                        <input type='checkbox' id="chk@{@adm2.AMID}" name="moduleitem" value="@adm2.AMID" onchange=" modulechange2(this) " @ischecked2 />@adm2.ModuleName
+                                    </label>
+                                    <ul>
+                                        @ShowCorpModule(usermodules, adm2.AMID, checkedmodules)
+                                    </ul>
+                                </li>
+                                        }
+                                        else
+                                        {
+                                <li>
+                                    <label for='chk@{@adm2.AMID}'>
+                                        <input type='checkbox' id="chk@{@adm2.AMID}" name="moduleitem" value="@adm2.AMID" @ischecked2 />@adm2.ModuleName
+                                    </label>
+                                </li>
+                                        }
+                                    }
+                            }
+                            @ShowCorpModule(adminmodules, adm1.AMID, checkedmodules)
+                        </ul>
+                    </div>
+                }
+            </div>
+        }
+        <div class="clearfix">
+            <dl>
+                <dt>角色描述：</dt>
+                <dd>
+                    @Html.TextAreaFor(x => x.Description)
+                    @Html.ValidationMessageFor(x => x.Description)
+                </dd>
+            </dl>
+        </div>
+    </div>
+}

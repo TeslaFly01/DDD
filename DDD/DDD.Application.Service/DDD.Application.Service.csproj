@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1B865BD-5740-499C-AE6A-FF41F78837E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DDD.Application.Service</RootNamespace>
+    <AssemblyName>DDD.Application.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseCacheService.cs" />
+    <Compile Include="BaseFrameworkServices.cs" />
+    <Compile Include="BaseServices.cs" />
+    <Compile Include="BusinessService\Admin\AdminActionService.cs" />
+    <Compile Include="BusinessService\Admin\AdminLogService.cs" />
+    <Compile Include="BusinessService\Admin\AdminModuleService.cs" />
+    <Compile Include="BusinessService\Admin\AdminRoleService.cs" />
+    <Compile Include="BusinessService\Admin\AdminRole_ModuleService.cs" />
+    <Compile Include="BusinessService\Admin\IAdminActionService.cs" />
+    <Compile Include="BusinessService\Admin\IAdminLogService.cs" />
+    <Compile Include="BusinessService\Admin\IAdminModuleService.cs" />
+    <Compile Include="BusinessService\Admin\IAdminRoleService.cs" />
+    <Compile Include="BusinessService\Admin\IAdminRole_ModuleService.cs" />
+    <Compile Include="BusinessService\Admin\ISystemAdminService.cs" />
+    <Compile Include="BusinessService\Admin\IUserInfoService.cs" />
+    <Compile Include="BusinessService\Admin\SystemAdminService.cs" />
+    <Compile Include="BusinessService\Admin\UserInfoService.cs" />
+    <Compile Include="BusinessService\Log\ILogService.cs" />
+    <Compile Include="CacheService\AdminCacheService.cs" />
+    <Compile Include="Common\CurrentAdmin.cs" />
+    <Compile Include="Common\CurrentAdminEx.cs" />
+    <Compile Include="IBaseServices.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Domain.MainModule\DDD.Domain.MainModule.csproj">
+      <Project>{01326854-451d-4707-82ee-f71ebf07db52}</Project>
+      <Name>DDD.Domain.MainModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Domain.Model\DDD.Domain.Model.csproj">
+      <Project>{23e0fe69-d44f-4174-876c-9fa6d91eb274}</Project>
+      <Name>DDD.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj">
+      <Project>{5a0ca442-0f72-48e9-891b-aece4f48bc4b}</Project>
+      <Name>DDD.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructur.Repositories\DDD.Infrastructur.Repositories.csproj">
+      <Project>{b4e24113-cc86-4bee-8ebc-0c8592420f76}</Project>
+      <Name>DDD.Infrastructur.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Cache\DDD.Infrastructure.CrossCutting.Cache.csproj">
+      <Project>{b59d81b8-b62e-41d7-81de-6c95dbeb63bf}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Common\DDD.Infrastructure.CrossCutting.Common.csproj">
+      <Project>{188724aa-e509-4490-871f-cce0755a1f1f}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Exception\DDD.Infrastructure.CrossCutting.Exception.csproj">
+      <Project>{5fd46f22-0dcc-462d-9151-0613438ce82c}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Exception</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Logging\DDD.Infrastructure.CrossCutting.Logging.csproj">
+      <Project>{697cfb69-ee28-4c21-af82-4fc5ad4da97a}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Infrastructure.CrossCutting.Resources\DDD.Infrastructure.CrossCutting.Resources.csproj">
+      <Project>{8f7f743e-d1e2-4876-be30-1206ceb8ba32}</Project>
+      <Name>DDD.Infrastructure.CrossCutting.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Utility\DDD.Utility.csproj">
+      <Project>{d7d1cf1e-a5cb-44e3-a7e3-a7232da87f1a}</Project>
+      <Name>DDD.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,42 @@
+﻿@using DDD.Application.Model.DTO;
+
+@model ChangePassword
+
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+    ViewBag.Title = "修改密码";
+}
+
+ @section Js {
+ <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.ext.min.js")" type="text/javascript"></script>
+ <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdmin.ChangePwd.min.js")" type="text/javascript"></script>
+  }
+
+    <!-- 提交表单 -->
+@using (Ajax.BeginForm("ChangePwd", new AjaxOptions() { HttpMethod = "Post", OnBegin = "AjaxStart", OnFailure = "AjaxFailure", OnSuccess = "AjaxSuccess" }))
+{
+      <table class="table-style" frame="border" cellspacing="1" style="width:98%;" align="center">
+          <tr>
+            <td class="box-li1 td-right"><span style='color:red;'>*</span>@Html.LabelFor(cp=>cp.OldPassword)</td>    
+            <td class="box-li2">
+            @Html.HiddenFor(cp=>cp.SAID)
+            @Html.PasswordFor(cp => cp.OldPassword,new {style="height: 20px;"})
+            @Html.ValidationMessageFor(cp => cp.OldPassword)
+            </td>
+          </tr>
+          <tr>
+            <td class="box-li1 td-right"><span style='color:red;'>*</span>@Html.LabelFor(cp => cp.Password)</td>
+            <td class="box-li2">
+              @Html.PasswordFor(cp => cp.Password, new { @MaxLength = "20" ,style="height: 20px;"})
+            @Html.ValidationMessageFor(cp => cp.Password)
+            </td>    
+          </tr>
+          <tr>
+            <td class="box-li1 td-right"><span style='color:red;'>*</span>@Html.LabelFor(cp => cp.ConfirmPassword)</td>
+            <td class="box-li2">
+              @Html.PasswordFor(cp => cp.ConfirmPassword, new { @MaxLength = "20" ,style="height: 20px;"})
+            @Html.ValidationMessageFor(cp => cp.ConfirmPassword)
+           </td>    
+          </tr> 
+        </table>
+}

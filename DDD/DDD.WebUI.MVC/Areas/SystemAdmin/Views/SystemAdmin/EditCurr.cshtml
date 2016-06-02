@@ -1,0 +1,53 @@
+﻿@using DDD.Application.Model.DTO;
+
+@model SystemAdminUpdate
+
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+    ViewBag.Title = "修改个人资料";
+}
+
+ @section Js {
+ <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.ext.min.js")" type="text/javascript"></script>
+ <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdmin.EditCurr.min.js?20150122")" type="text/javascript"></script>
+  }
+
+    <!-- 提交表单 -->
+@using (Ajax.BeginForm("EditCurr", new AjaxOptions() { HttpMethod = "Post", OnBegin = "AjaxStart", OnFailure = "AjaxFailure", OnSuccess = "AjaxSuccess" }))
+{
+     <table class="table-style" frame="border" cellspacing="1" style="width:98%;" align="center">
+            <tr>
+            <td class="td-right font-strong"><span style='color:red;'>*</span>@Html.LabelFor(sa => sa.SANickName)</td>    
+            <td>
+                @Html.HiddenFor(sa => sa.Password)
+                @Html.HiddenFor(sa => sa.IsEnable)
+                @Html.HiddenFor(sa => sa.SAID)
+                @Html.TextBoxFor(sa => sa.SANickName)
+                @Html.HiddenFor(sa=>sa.SAName)
+                @Html.ValidationMessageFor(sa => sa.SANickName)
+            </td>
+          </tr>
+          <tr>
+            <td class="td-right font-strong"><span style='color:red;'>*</span>@Html.LabelFor(sa => sa.SAMobileNo)</td>
+            <td>
+                @Html.TextBoxFor(sa => sa.SAMobileNo)
+                @Html.ValidationMessageFor(sa => sa.SAMobileNo)
+            </td>    
+          </tr> 
+          <tr>
+            <td class="td-right font-strong">@Html.LabelFor(sa => sa.SASex)</td>
+            <td>
+                @Html.RadioButton("SASex", true, new { @id = "men" }) <label for="men">男</label>
+                @Html.RadioButton("SASex", false, new { @id = "women" }) <label for="women">女</label>
+                @Html.ValidationMessageFor(sa => sa.SASex)
+            </td>    
+          </tr> 
+          <tr>
+            <td class="td-right font-strong"><span style='color:red;'>*</span>@Html.LabelFor(sa => sa.Email)</td>
+            <td>
+                @Html.TextBoxFor(sa => sa.Email)
+                @Html.ValidationMessageFor(sa => sa.Email)
+            </td>  
+          </tr> 
+        </table>
+}

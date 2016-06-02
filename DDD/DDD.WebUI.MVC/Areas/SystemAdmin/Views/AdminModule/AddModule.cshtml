@@ -1,0 +1,62 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+
+@model AdminModule
+
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+    ViewBag.Title = "添加管理员菜单权限";
+}
+
+  @section Js {
+      <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminModule.Add.min.js")" type="text/javascript"></script>
+  }
+
+  <!-- 提交表单 -->
+  @using (Ajax.BeginForm("AddModule", new AjaxOptions() { HttpMethod = "Post", OnBegin = "AjaxStart", OnFailure = "AjaxFailure", OnSuccess = "AjaxSuccess"}))
+  {
+ <table class="table-style" frame="border" cellspacing="1" style="width:98%;" align="center">
+          <tr>
+            <td class="box-li1 td-right" style="width: 30%">
+            <span class="font-red">*</span>
+            @Html.LabelFor(aa => aa.ModuleName)</td>    
+            <td class="box-li2" style="width: 70%">
+                @Html.TextBoxFor(am => am.ModuleName,new {style="width: 180px;"})
+                @Html.ValidationMessageFor(am => am.ModuleName)
+            </td>
+          </tr>
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.PageUrl)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(am => am.PageUrl,new {style="width: 180px;"})
+                @Html.ValidationMessageFor(am => am.PageUrl)
+            </td>    
+          </tr>
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.FID)</td>
+            <td class="box-li2">
+                @Html.DropDownListFor(am => am.FID, (IEnumerable<SelectListItem>)ViewBag.FIDList,new {style="width: 180px;"})
+                @Html.ValidationMessageFor(am => am.FID)
+           </td>    
+          </tr> 
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.FormRoleName)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(am => am.FormRoleName,new {style="width: 180px;"})
+                @Html.ValidationMessageFor(am => am.FormRoleName)
+            </td>    
+          </tr> 
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.CSSStyle)</td>
+            <td class="box-li2">
+                @Html.TextBoxFor(am => am.CSSStyle,new {style="width: 180px;"})
+                @Html.ValidationMessageFor(am => am.CSSStyle)
+            </td>  
+          </tr> 
+          <tr>
+            <td class="box-li1 td-right">@Html.LabelFor(aa => aa.IsEnable)</td>
+            <td class="box-li2">
+                @Html.CheckBoxFor(am => am.IsEnable, new { @checked = "checked",@style="width:15px" })
+            </td>  
+          </tr> 
+        </table>
+  }

@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.CurrentPosition = "管理员 -> 管理员账户";
+    ViewBag.Title = "账户列表";
+}
+@section Js {
+    <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdmin.min.js")" type="text/javascript"></script>
+}
+<table width="99%" class="table-search " frame="border">
+    <tr>
+        <td valign="middle" class="td-right td-white td-height">
+            <span class="float-left " style="margin: 0 10px;">角色 @Html.DropDownList("RoleSearch", (IEnumerable<SelectListItem>)ViewBag.RoleList)
+                帐号
+                <input type="text" id="txtName" maxlength="20" />
+                姓名
+                <input type="text" id="txtNickName" maxlength="20" />
+                <a id="btnSearch" class="button-search" onclick="sysAdminSearch()"><span>搜 索</span></a>
+                <input type="hidden" id="srarchName" />
+                <input type="hidden" id="srarchNickName" />
+                <input type="hidden" id="srarchRole" />
+            </span>
+        </td>
+        <td>
+            <div id="load-s" style="display: none;">
+                <img src="@Url.Content("~/Content/images/loading.gif")" />
+                数据加载中...
+            </div>
+        </td>
+        <td class="td-right">
+            <a href="###" class="button-add " id="addsysadmin" onclick="openAddSysAdmin()"><span>
+                添加系统管理员</span></a>
+        </td>
+    </tr>
+</table>
+<div id="divSystemAdminList">
+</div>

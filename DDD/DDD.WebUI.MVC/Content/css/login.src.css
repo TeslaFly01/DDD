@@ -1,0 +1,98 @@
+@charset "gb2312";
+/* CSS Document */
+
+*{ margin:0; padding:0; list-style-type:none; font-family:"ËÎÌו"; font-size:12px;}
+body{	background-color: #FF5700;}
+a{color:#900; text-decoration:none;}
+a:hover{ color:#F00; text-decoration:none;}
+input[type="text"]{ width:160px; height:20px; line-height:20px; padding:0px 3px;}
+input[type="password"]{ width:160px; height:20px; line-height:20px;padding:0px 3px;  }
+.box-error{font-weight:normal; font-size:12px; color:#000; height:16px; line-height:16px; padding:0px 22px; display:block; background:url(../images/box-error.jpg) no-repeat;}
+
+.box-success{font-weight:normal; font-size:12px; color:#000; height:16px; line-height:16px; padding:0px 22px; display:block;  background:url(../images/box-success.jpg) no-repeat;}
+.button-login{width:106px; height:33px; cursor:pointer; border:none; line-height:33px; color:#fff ; font-weight:bold; background:url(../images/button-login.jpg) no-repeat; text-align:center; }
+#ccode{width:70px;}
+
+.container{width:960px; height:600px; margin:0 auto; background:url(../images/login-body-bg.jpg) no-repeat; position:relative;}
+
+ .main{	width:646px;	height:278px;	background:url(../images/Login-bg.jpg) no-repeat;	position:absolute;	top:160px;	left:161px;}
+   .login{	position:absolute;top:85px;	left:260px;	height: 183px;	width: 423px;}
+     .login li{ margin:15px 0;}
+     .login li div{  display:inline-block;color:#B03500; font-weight:normal;text-indent:2px;filter:Dropshadow(offx=1,offy=0,color=#ffffff) Dropshadow(offx=0,offy=1,color=#ffffff) Dropshadow(offx=-1,offy=0,color=#ffffff) Dropshadow(offx=0,offy=-1,color=#ffffff);text-shadow: -1px 0 #FFF, 0 1px #FFF,1px 0 #FFF, 0 -1px #FFF; }
+     
+
+   
+ .foot{	width:646px; padding-top:58px; text-align:center; color:#fff; 	position:absolute;	top:443px;	left:161px;	background:url(../images/foot-bg-login.jpg) no-repeat;}
+ 
+
+.clear{clear:both;}
+ 
+  fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+.editor-label 
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field 
+{
+    margin:0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+        width:180px;
+    height:22px;
+    line-height:22px;
+    padding:0px 3px;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #f00;
+    background: #fee;
+    width:182px;
+    height:22px;
+    line-height:22px;
+    padding:0px 3px;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+	  
+
+
+#lhgdgCover{filter:alpha(opacity=20);opacity:.2; }   

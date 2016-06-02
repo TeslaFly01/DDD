@@ -1,0 +1,40 @@
+﻿/*!
+ * lhgcore Dialog Plugin StyleSheet
+ * Copyright (c) 2009 - 2011 By Li Hui Gang
+ */
+html{_background-image:url(about:blank);_background-attachment:fixed; }
+
+.lhgdialog_facebook{position:absolute;padding:0;margin:0;font:12px Tahoma,Arial,sans-serif;}
+
+.lhgdg_leftTop_facebook,.lhgdg_rightTop_facebook,.lhgdg_leftBottom_facebook,.lhgdg_rightBottom_facebook,.lhgdg_top_facebook,.lhgdg_icon_facebook,a.lhgdg_xbtn_facebook{background-image:url(facebook/lhgdg_bg.png);background-repeat:no-repeat;}
+
+.lhgdg_leftTop_facebook{background-position:-1px 0;width:7px;height:40px;_ie6png:facebook/ie6/leftTop.png;}
+.lhgdg_rightTop_facebook{background-position:-9px 0;width:7px;_ie6png:facebook/ie6/rightTop.png;}
+.lhgdg_leftBottom_facebook{background-position:-1px -41px;width:7px;height:7px;_ie6png:facebook/ie6/leftBottom.png;}
+.lhgdg_rightBottom_facebook{background-position:-9px -41px;cursor:nw-resize;width:7px;_ie6png:facebook/ie6/rightBottom.png;}
+
+.lhgdg_left_facebook,.lhgdg_right_facebook{background-color:#96A2BC;opacity:0.74;filter:alpha(opacity=74);}
+
+.lhgdg_top_facebook{background-repeat:repeat-x;background-position:0 -80px;font-size:0;cursor:move;_ie6png:facebook/ie6/top.png;}
+.lhgdg_bottom_facebook{background-color:#96A2BC;opacity:0.74;filter:alpha(opacity=74);}
+
+a.lhgdg_xbtn_facebook{position:absolute;display:block;cursor:default;width:10px;height:10px;top:18px;background-position:-3px -50px;right:15px;_ie6png:facebook/ie6/titBtn.gif;}
+
+.lhgdg_title_icon_facebook{height:33px; }
+.lhgdg_icon_facebook{float:left;background-position:0 -62px;width:16px;height:16px;margin-top:12px;margin-left:5px;}
+.lhgdg_title_facebook{float:left;color:#555;font-weight:bold;font-size:13px;height:18px;margin-top:11px;margin-top:13px\0;padding-left:5px;}
+ 
+.lhgdg_inbox_facebook,.lhgdg_load_facebook{width:100%;height:100%;background-color:#fff;overflow:auto;}
+.lhgdg_load_facebook{text-align:center;font-weight:bold;}
+.lhgdg_load_facebook span{padding-left:20px;height:16px;background:url(facebook/wait.gif) no-repeat center left;font-size:12px;}
+
+.lhgdg_btnBar_facebook{height:29px;background-color:#f6f6f6;border-top:1px solid #dadee5;}
+.lhgdg_btn_div_facebook{float:right;}
+a.lhgdg_button_facebook,a.lhgdg_button_facebook em{background:url(facebook/lhgdg_btn.gif) no-repeat;display:inline-block;height:21px;}
+a.lhgdg_button_facebook{text-decoration:none;background-position:0 0;padding-left:15px;color:#000;cursor:default;margin-right:5px;}
+a.lhgdg_button_facebook:hover{background-position:0 -42px;}
+a.lhgdg_button_facebook em{font-style:normal;background-position:right -21px;padding-right:15px;line-height:21px;line-height:24px\0;font-size:12px;}
+a.lhgdg_button_facebook:hover em{background-position:right -63px;}
+
+.lhgdg_lockScroll{*overflow:hidden;}
+.lhgdg_lockScroll body{overflow:hidden;padding-right:17px;}

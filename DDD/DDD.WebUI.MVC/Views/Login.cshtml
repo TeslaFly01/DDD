@@ -1,0 +1,81 @@
+﻿@using DDD.Application.Model.DTO
+@model Login
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>万券|商家管理系统</title>
+    <link rel="Shortcut Icon" href="@Url.Content("~/favicon.ico")" />
+    <link href="@Url.Content("~/Content/css/login.css?v=20140414")" rel="stylesheet" type="text/css" />
+    <link  href="@Url.Content("~/Scripts/jquery.poshytip/tip-yellowsimple/tip-yellowsimple.css?20150104")" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.11.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js?20150104")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js?20150104")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js?20150104")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.poshytip/jquery.poshytip.min.js?20150104")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Global.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/lhgdialog/lhgcore.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/lhgdialog/lhgdialog.min.js?s=chrome,facebook")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/CommonBase.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Login.min.js?20160121")" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+            <style>.gradient { display: none; }</style>
+        <![endif]-->
+    <!--[if lte IE 6]>
+            <link href="@Url.Content("~/Content/css/login-ie6.css")" rel="stylesheet" type="text/css" />
+        <![endif]-->
+    <!--[if lte IE 7]>
+            <link href="@Url.Content("~/Content/css/login-ie7.css")" rel="stylesheet" type="text/css" />
+        <![endif]-->
+    <!--[if IE 6]><script src="@Url.Content("~/Scripts/DD_belatedPNG.min.js")" type="text/javascript"></script>
+            <script type="text/javascript">DD_belatedPNG.fix('.login-name , .login-logo');</script>
+        <![endif]-->
+
+</head>
+
+<body>
+    @*<div class="top-news" id="div_sysnotice">
+        通知：万券将于2014年10月21日（周二） 23点开始进行数据迁移到阿里云，估计耗时1小时左右，期间平台暂停使用，敬请见谅。
+    </div>*@
+    <div class="wrapper">
+        <div class="user-icon"></div>
+        <div class="pass-icon"></div>
+        <div class="pin-icon"></div>
+        <div class="login-form">
+            <div class="header">
+                <div class="logo">
+                    <img src="/Content/images/icon-sys/logo-simple.png" /></div>
+            </div>
+            @using (Ajax.BeginForm("Login", new AjaxOptions() { HttpMethod = "Post", OnBegin = "AjaxStart", OnFailure = "AjaxFailure", OnSuccess = "AjaxSuccess" }))
+            {
+                <div class="content">
+
+                    @Html.AntiForgeryToken()
+                    @Html.TextBoxFor(m => m.SAName, new { @autocomplete = "off", placeholder = "登录帐号" })
+                    @Html.ValidationMessageFor(m => m.SAName)
+
+                    @Html.PasswordFor(m => m.SAPwd, new { placeholder = "登录密码" })
+                    @Html.ValidationMessageFor(m => m.SAPwd)
+
+                    @Html.TextBoxFor(m => m.ValidationCode, new { @id = "ccode", @maxlength = "4", @title = "请输入右边的字符或计算的结果", placeholder = "验证码" })
+                    <img style="cursor: pointer; vertical-align: middle;" src="" alt="验证码" title="点击更换" id="imgcode" class="validcode" />
+                    @Html.ValidationMessageFor(m => m.ValidationCode)
+                </div>
+                <div class="footer clearfix">
+
+                    <input type="submit" id="btn_logon" class="button" value="登  录" />
+                    <a class="link" href="javascript:FindPass()">忘记密码？</a>
+                    <div class="clear"></div>
+                    <p style="padding-top: 15px;">&copy;2011-2015 Wquan.cn All Rights Reserved
+                        <br />
+                        技术支持：锦福科技</p>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="gradient"></div>
+</body>
+
+</html>

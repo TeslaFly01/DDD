@@ -1,0 +1,128 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@using DDD.Application.MVC.Core.Helpers;
+@model IEnumerable<AdminModule>   
+           
+<script src="@Url.Content("~/Scripts/SelectAll.min.js?20150122")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Alternation.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Areas/SystemAdmin/Scripts/sysAdminModule.Select.min.js")" type="text/javascript"></script>
+
+<table width="99%" align="center" cellspacing="1" class="table-style" frame="border">
+    <tr>
+        <td colspan="9" valign="middle" class="td-right bg-white td-height">
+            <span class="float-left font-strong">
+            所属父级：@Html.DropDownList("selectSearch", (IEnumerable<SelectListItem>)ViewBag.FIDList)
+            </span>
+           
+                <a href="javascript:void(0)" class="button-add" id="aAddModule" onclick="openAddModule()" ><span>添加功能模块</span></a>
+        </td>
+    </tr>
+    <tr>
+        <td width="5%" class="td-title">
+            选择
+        </td>
+        <td width="10%" class="td-title">
+            模块名称
+        </td>
+        <td width="30%" class="td-title">
+            页面地址
+        </td>
+        <td width="9%" class="td-title">
+            所属父级
+        </td>
+        <td width="10%" class="td-title">
+            角色名称
+        </td>
+        <td width="10%" class="td-title">
+            CSS样式
+        </td>
+        <td width="6%" class="td-title">
+            排序
+        </td>
+        <td width="6%" class="td-title">
+            启用
+        </td>
+        <td width="14%" class="td-title">
+            操作
+        </td>
+    </tr>
+    @{
+        if (Model != null && Model.Any())
+        {
+            foreach (var adminmodule in Model)
+            { 
+        <tr>
+            <td class="td-center">
+                <input type="checkbox" name="checkitem" class="checkitem" value="@adminmodule.AMID" />
+            </td>
+            <td class="td-center">@adminmodule.ModuleName
+            </td>
+            <td >@adminmodule.PageUrl
+            </td>
+            <td class=" td-center">
+                @{
+                if (adminmodule.FAdminModule == null)
+                {
+                    @:顶级菜单
+                }
+                else
+                { @adminmodule.FAdminModule.ModuleName}
+                }
+            </td>
+            <td class=" td-center">@adminmodule.FormRoleName
+            </td>
+            <td >@adminmodule.CSSStyle
+            </td>
+            <td valign="middle" class=" td-center">
+                <!-- 上/下排序 -->
+                @(new HtmlString(@Ajax.ImageActionLink(Url.Content("~/Content/images/px1.jpg"), "上移", "上移", "Move", new { id = adminmodule.AMID, Flag = true, fid = adminmodule.FID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "divModuleList" })))
+                @(new HtmlString(@Ajax.ImageActionLink(Url.Content("~/Content/images/px2.jpg"), "下移", "下移", "Move", new { id = adminmodule.AMID, Flag = false, fid = adminmodule.FID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "divModuleList" })))
+            </td>
+                <td class="td-center">
+                  @CommonHelper.FormatLetterRedGreen(adminmodule.IsEnable)
+                </td>
+            <td class="td-center">
+                <!-- 修改/删除/权限管理 -->
+                <a  class="cursor alink" href="javascript:void(0)" onclick="openUpdateModule(@adminmodule.AMID)">
+                    修改</a> | @Ajax.ActionLink("删除", "DeleteModule", new { id = adminmodule.AMID, fid = adminmodule.FID }, new AjaxOptions { Confirm = "确定要删除吗?下属所有操作权限将同时被删除!", HttpMethod = "Post", UpdateTargetId = "divModuleList", OnSuccess = "DeleteSuccess", OnBegin = "AjaxStart", OnFailure = "AjaxFailure" }, new { @class = "cursor alink" })
+                @{if (adminmodule.FID != 0)
+                  {@: |
+ <a class="cursor alink" href="javascript:void(0)" onclick="openRightsManager(@adminmodule.AMID)">操作权限</a>
+                  }
+                }
+            </td>
+        </tr>
+            }
+    <tr>
+        <!-- 批处理 -->
+        <td align="center">
+        <input type="checkbox" id="selectAllItems" /> 
+        </td>
+        <td colspan="8" class="td-left td-height">
+
+            <a class="button-enable" onclick="IsEnableDelete('Enable', 'eby')"><span>批量启用</span></a>
+            <a class="button-disable" onclick="IsEnableDelete('Enable', 'ebn')"><span>批量禁用</span></a>
+            <a class="button-del" onclick="IsEnableDelete('DeleteModuleList', 'del')"><span>批量删除</span></a>
+
+        </td>
+    </tr>
+        }
+        else
+        {
+        <tr>
+            <td colspan="9" class="NoneData">
+                未查找到数据!
+            </td>
+        </tr>
+        }
+    }
+</table>
+<!-- 错误提示 -->
+@{if (!string.IsNullOrEmpty(ViewBag.Alert))
+  {
+    <input type="hidden" id="AlertMessage" value="@ViewBag.Alert" />
+    <script type="text/javascript">
+        alert(document.getElementById("AlertMessage").value);
+    </script>
+      ViewBag.Alert = null;
+  }
+}

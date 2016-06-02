@@ -1,0 +1,82 @@
+﻿@using DDD.Domain.Model.Entities.Admin
+@model List<AdminModule>
+@if (Model != null && Model.Any())
+{
+    var fid = (int)ViewBag.FID;
+    foreach (var adm in Model.Where(x => x.FID == fid))
+    {
+        var action = adm.AdminActions.ToList();
+    <div class="tab-content-box">
+        <h3>
+            @adm.ModuleName</h3>
+        <div class="setting">
+            @if (action.Any())
+            {
+                var rWgt = 0;
+                var roleModule = adm.AdminRole_Modules.FirstOrDefault(x => x.AMID == adm.AMID);
+                if (roleModule != null)
+                {
+                    rWgt = roleModule.Weights;
+                }
+                foreach (var item in action)
+                {
+                    if ((rWgt & item.Weight) == item.Weight)
+                    {
+                <label for="chk@{@item.AAID}">
+                    <input id="chk@{@item.AAID}" type="checkbox" name="moduleitem" checked="checked" value="@item.AMID|@item.Weight" />@item.OptName</label>
+                    }
+                    else
+                    {
+                <label for="chk@{@item.AAID}">
+                    <input id="chk@{@item.AAID}" name="moduleitem" value="@item.AMID|@item.Weight" type="checkbox" />@item.OptName</label>
+                    }
+
+                }
+            }
+        </div>
+        <div class="setting">
+            @helper ShowCorpModuleAndAction(List<AdminModule> admmodules, int fid)
+                {
+                    var currmodules = admmodules.Where(x => x.FID == fid);
+                    foreach (var admModule in currmodules)
+                    {
+                        var action1 = admModule.AdminActions.ToList();
+                <div class="inner-setting">
+                    <h3>
+                        @admModule.ModuleName</h3>
+                    <div class="setting">
+                        @if (action1.Any())
+                        {
+                            var rWgt = 0;
+                            var roleModule = admModule.AdminRole_Modules.FirstOrDefault(x => x.AMID == admModule.AMID);
+                            if (roleModule != null)
+                            {
+                                rWgt = roleModule.Weights;
+                            }
+                            foreach (var item in action1)
+                            {
+                                if ((rWgt & item.Weight) == item.Weight)
+                                {
+                            <label for="chk@{@item.AAID}">
+                                <input id="chk@{@item.AAID}" name="moduleitem" type="checkbox" checked="checked" value="@item.AMID|@item.Weight" />@item.OptName</label>
+                                }
+                                else
+                                {
+                            <label for="chk@{@item.AAID}">
+                                <input id="chk@{@item.AAID}" name="moduleitem" type="checkbox" value="@item.AMID|@item.Weight" />@item.OptName</label>
+                                }
+
+                            }
+                        }
+                    </div>
+                    <div class="setting">
+                        @ShowCorpModuleAndAction(admmodules, admModule.AMID)
+                    </div>
+                </div>
+                    }
+            }
+            @ShowCorpModuleAndAction(Model, adm.AMID)
+        </div>
+    </div>
+    }
+}

@@ -1,0 +1,39 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@model SystemAdmin
+           @{
+                    var level = Model.corp.CorpLevel;
+                var shop = Model.corpShop;    
+                }
+
+
+<div class="md-img-box">
+<a class="md-img-box-a" href="javascript:" onclick='openCorpLevel()' title="查看等级说明">
+<img class="md-logo" src="@level.LevelPic" /> 
+</a>
+<div style="text-align:center;">@{@level.LevelName<text>商家</text>}</div>
+</div>
+
+<div class="content-top-md">
+    <h3>@{@shop.ShopName} </h3>
+    <dl class="clearfix">
+        <dt>剩余万券币：</dt>
+        <dd>@shop.BalancePoints 点</dd>
+    </dl>
+        @if (ViewBag.ShowRemainScore != null && ViewBag.ShowRemainScore)
+        {
+            <dl class="clearfix">
+                <dt>剩余联盟积分：</dt>
+                <dd>@ViewBag.ReRemainScore 分</dd>
+            </dl>
+        }
+<dl class="clearfix">
+    <dt>门店到期时间：</dt>
+    <dd>@shop.OverdueDate.ToString("yyyy-MM-dd HH:mm:ss")</dd>
+</dl>
+@*<span class="company-name1">
+剩余万券币：@shop.BalancePoints 点
+@{ var str = (string) ViewBag.ReRemainScoreStr; @str }丨
+门店到期时间：@shop.OverdueDate.ToString("yyyy-MM-dd HH:mm:ss")
+                 </span> *@
+                 
+</div>

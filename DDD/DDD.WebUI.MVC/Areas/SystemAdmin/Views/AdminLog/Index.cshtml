@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.CurrentPosition = "管理员 -> 管理员操作日志";
+    ViewBag.Title = "Index";
+}
+@section Js {
+    <script src="@Url.Content("~/Areas/SystemAdmin/Scripts/AdminLog.min.js")" type="text/javascript"></script>
+}
+<table width="99%" class="table-search" frame="border">
+    <tr>
+        <td>
+            操作内容
+            <input type="text" id="txtMessage" maxlength="50" />
+            帐号
+            <input type="text" id="txtUserName" maxlength="20" />
+            发生时间起
+            <input id="txtBegin" class="Wdate" maxlength="10" onfocus="WdateBegin();" style="padding-left:5px; width:82px;" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
+            止
+            <input id="txtEnd" class="Wdate" 
+maxlength="10" onfocus="WdateEnd();" value="@DateTime.Now.ToString("yyyy-MM-dd")" style="padding-left:5px; width:82px;" />
+            <a id="btnSearch" href="javascript:void(0)" class="button-search" onclick="Search();"><span>搜 索</span></a>
+        </td>
+        <td>
+            <div id="load-s" style="display: none;">
+                <img src="@Url.Content("~/Content/images/loading.gif")" />
+                数据加载中...
+            </div>
+        </td>
+    </tr>
+</table>
+<input type="hidden" id="hd_message" />
+<input type="hidden" id="hd_username" />
+<input type="hidden" id="hd_begin" value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
+<input type="hidden" id="hd_end" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+<div class="clear">
+</div>
+<div id="AdminLogList">
+</div>

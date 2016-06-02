@@ -1,0 +1,44 @@
+/*!
+ * SYNNEX Web HTML5 CSS3 Library v1.0
+ *
+ * Copyright 2011, Ronnie Liu 
+ * EXT:14981
+ * Email:ronniel@synnex.com
+ *
+ * Date: Wed Mar 16 10:32:29 2011
+ */
+ /*-------------------All Property Reset -------------------------------*/
+ *{margin:0;padding:0;border: 0; outline: 0; -webkit-text-size-adjust: none;}
+a img, iframe{border:none;}
+ol, ul{list-style:none;}
+.clear{clear:both;font-size:0;display:block;height:0;}
+.clearfix:after {content: ".";display: block;height:0; clear: both;visibility: hidden;}/*For FireFox clear float*/
+.clearfix {*zoom:1;}/* Only IE */
+:focus {outline: 0;} 
+table{border-collapse: collapse;  border-spacing: 0; } 
+caption, th, td {text-align: left;  font-weight: normal; } 
+/* Fixes incorrect placement of numbers in ol's in IE6/7 */ 
+ol { margin-left:2em; } 
+header, nav, article, footer, address,hgroup,aside,section{display: block;}
+/*----------Mouse Shape--------------*/
+.cursor{ cursor:pointer;}
+
+/*----------font style------------*/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small,strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, table,caption, tbody, tfoot, thead, tr, th, td, input, select, textarea{font-weight: normal; font-style: normal; vertical-align: baseline;}
+input, textarea, select, button { font-family: inherit;}
+
+
+/*-----------Font Public class --------------*/
+.textLeft{ text-align:left;}
+.textRight{ text-align:right;}
+.textCenter{ text-align:center;}
+.bold{ font-weight:bold;}
+
+
+/*-----------Layout Public class --------------*/
+.floatLeft{ float:left;}
+.floatRight{ float:right;}
+.off{display:none;}
+.on{display:block;}
+.hidden{ visibility:hidden;}
+.visible{ visibility:visible;}

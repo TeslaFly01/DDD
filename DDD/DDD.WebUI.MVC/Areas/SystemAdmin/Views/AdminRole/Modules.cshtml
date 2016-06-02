@@ -1,0 +1,39 @@
+﻿@using DDD.Domain.Model.Entities.Admin
+@using DDD.Application.MVC.Core.Helpers
+@model IEnumerable<AdminModule>
+@{
+    Layout = "~/Views/Shared/_DialogLayout.cshtml";
+}
+@{
+    var list = Model.OrderBy(x => x.SortFlag).ToSelectListItemsForSysModules().ToList();
+}
+<table style="width: 98%;" align="center" cellspacing="1" class="table-style" frame="border">
+    @{
+        if (list.Any())
+        {
+            foreach (var corpModule in list)
+            {
+                if (corpModule.FID == 0)
+                {
+        <tr>
+            <td class="font-strong" style="background: #E9F8FE;">
+                @corpModule.ModuleName
+            </td>
+        </tr>
+                }
+                else
+                {
+        <tr>
+            <td>
+                @corpModule.ModuleName
+            </td>
+        </tr>
+                }
+            }
+        }
+        else
+        {
+        <span class="NoneData">未找到该角色的功能列表！</span>
+        }
+    }
+</table>

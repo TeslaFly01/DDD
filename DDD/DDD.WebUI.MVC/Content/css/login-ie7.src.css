@@ -1,0 +1,5 @@
+@charset "gb2312";
+/* CSS Document */
+html, body {overflow-x: hidden; overflow-y: none;}
+		  .login-right li{ height:22px; margin:-5px 5px; }
+		  div{ border:none;}

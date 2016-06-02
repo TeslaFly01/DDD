@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="DDD.WCF.WcfRestService.Global" Language="C#" %>

@@ -1,0 +1,73 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@using DDD.Application.MVC.Core.Helpers;
+
+@model IEnumerable<AdminAction>   
+
+<script src="@Url.Content("~/Scripts/SelectAll.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Alternation.min.js")" type="text/javascript"></script>
+
+ <table width="99%"  align="center" cellspacing="1"  class="table-style" id="datalist" frame="border">
+          <tr>
+            <td colspan="9" valign="middle" class="td-right td-white td-height">
+              <span class="float-left">
+                </span>
+              <a class="button-add" href="javascript:" onclick="openAddAction(@ViewBag.Amid)" ><span>添加操作权限</span></a>
+          </td>
+          </tr>
+          <tr>
+            <td width="8%" class="td-title">选择</td>
+            <td width="15%" class="td-title" >操作名称</td>
+            <td width="16%" class="td-title" >控制器名称</td>
+            <td width="16%" class="td-title" >功能名称</td>
+            <td width="10%" class="td-title" >权限描述</td>
+            <td width="10%" class="td-title" >权值</td>
+            <td width="9%" class="td-title" >排序</td>
+            <td width="16%" class="td-title" >操作</td>
+          </tr>
+          @{
+              if (Model != null && Model.Any())
+              {
+              foreach (var adminaction in Model)
+            { 
+          <tr>
+            <td class="bg-gray td-center"><input type="checkbox" name="checkitem" class="checkitem" value="@adminaction.AAID" /></td>
+            <td class="bg-gray">@adminaction.OptName</td>
+            <td class="bg-gray">@adminaction.ControllerName</td>
+            <td class="bg-gray">@adminaction.ActionName</td>
+            <td class="bg-gray">@adminaction.Description</td>
+            <td class="bg-gray">@adminaction.Weight</td>
+            <td valign="middle" class="bg-gray td-center">
+		<!-- 上/下排序 -->	
+            @(new HtmlString(@Ajax.ImageActionLink(Url.Content("~/Content/images/px1.jpg"), "上移", "上移", "Move", new { id = adminaction.AAID, Flag = true, amid = adminaction.AMID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "divActionList" }))) @(new HtmlString(@Ajax.ImageActionLink(Url.Content("~/Content/images/px2.jpg"), "下移", "下移", "Move", new { id = adminaction.AAID, Flag = false, amid = adminaction.AMID }, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "divActionList" })))
+			</td>
+            <td class="bg-gray td-center">
+           <!-- 修改/删除/权限管理 -->	
+            <a style="cursor:pointer;" onclick="openUpdateAction(@adminaction.AAID)">修改</a> | @Ajax.ActionLink("删除", "DeleteAction", new { id = adminaction.AAID, amid = adminaction.AMID }, new AjaxOptions { Confirm = "确定要删除吗?", HttpMethod = "Post", UpdateTargetId = "divActionList", OnSuccess = "DeleteSuccess", OnBegin = "AjaxStart", OnFailure = "AjaxFailure" })
+            </td>
+          </tr>
+            }
+          <tr>
+          <!-- 批处理 -->	
+            <td class="td-center">
+              <input type="checkbox" id="selectAllItems" />
+            </td>
+            <td  colspan="8" class="td-left td-white td-height">
+                <a class="button-del" onclick="DeleteList(@ViewBag.Amid)"><span>批量删除</span></a>
+            </td>
+          </tr>
+            }else
+            {
+                  <tr><td colspan="9" class="NoneData">未查找到数据!</td></tr>
+              }
+          }
+        </table>
+        <!-- 错误提示 -->
+@{if (!string.IsNullOrEmpty(ViewBag.Alert))
+  {
+    <input type="hidden" id="AlertMessage" value="@ViewBag.Alert" />
+    <script type="text/javascript">
+        alert(document.getElementById("AlertMessage").value);
+    </script>
+      ViewBag.Alert = null;
+  }
+}

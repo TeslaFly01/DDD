@@ -1,0 +1,48 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+
+@model IEnumerable<AdminRole>   
+           
+<script src="@Url.Content("~/Scripts/SelectAll.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Alternation.min.js")" type="text/javascript"></script>
+
+ <table width="99%"  align="center" cellspacing="1"  class="table-style" frame="border">
+          <tr>
+            <td  colspan="4" valign="middle" class="td-right bg-white td-height">     
+              <a href="javascript:void(0)" class="button-add" id="aAddRole" onclick="openAddRole()"><span>添加管理员角色</span></a>
+          </td>
+          </tr>
+          <tr>
+            <td width="20%" class="td-title" >角色名称</td>
+            <td width="45%" class="td-title" >角色描述</td>
+            <td width="10%" class="td-title" >角色功能</td>
+            <td width="24%" class="td-title" >操作</td>
+          </tr>
+          @{
+              if (Model != null && Model.Any())
+              {
+                  foreach (var adminRole in Model)
+                  { 
+          <tr>
+            <td class="bg-gray">@adminRole.ARName</td>
+            <td class="bg-gray">@adminRole.Description</td>
+            <td class="bg-gray td-center">
+                @*   @{
+                      var p = new List<AdminModule>();
+                      adminRole.AdminRole_Modules.ToList().ForEach(t => p.Add(t.adminModule));
+            @Html.DropDownList("selModule", p.OrderBy(x=>x.SortFlag).ToSelectListItems(0, 0))
+                }*@
+                <a  class="cursor alink" href="javascript:void(0)" onclick="Modules(@adminRole.ARID)">查看</a>
+            </td>
+            <td class="bg-gray td-center">
+           <!-- 修改/删除/权限管理 -->	
+            <a  class="cursor alink" href="javascript:void(0)" onclick="openUpdateRole(@adminRole.ARID)">修改</a> | <a class="alink cursor" href="javascript:void(0)" onclick="if(confirm('您确定要删除[@adminRole.ARName]吗?'))roleDelete('@adminRole.ARID')">删除</a> | <a class="cursor alink" href="javascript:void(0)" onclick="openSetting(@adminRole.ARID)">操作设置</a>
+            </td>
+          </tr>
+                  }
+              }
+              else
+              {
+                  <tr><td colspan="4" class="NoneData">未查找到数据!</td></tr>
+              }
+          }
+        </table>

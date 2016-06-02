@@ -1,0 +1,83 @@
+﻿@using DDD.Domain.Model.Entities.Admin;
+@using Webdiyer.WebControls.Mvc;
+
+@model PagedList<AdminLog>
+
+<script src="@Url.Content("~/Scripts/Alternation.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/SelectAll.min.js")" type="text/javascript"></script>
+
+ <table width="99%"  align="center" cellspacing="1"  class="table-style" id="datalist">
+          <tr>
+          <td width="4%" class="td-title">选择</td>
+            <td width="11%" class="td-title" >操作内容</td>
+            <td class="td-title" >描述</td>
+            <td width="8%" class="td-title" >帐号</td>
+            <td width="8%" class="td-title" >姓名</td>
+            <td width="8%" class="td-title" >IP地址</td>
+            <td width="70" class="td-title" >发生时间</td>
+            <td width="5%" class="td-title" >操作</td>
+          </tr>
+          @{
+              if(Model!=null && Model.Any())
+              {
+              foreach (var log in Model)
+            { 
+          <tr>
+           <td class="td-center"><input type="checkbox" name="checkitem" class="checkitem" value="@log.LogID" /></td>
+            <td class="td-left">@log.OptContent</td>
+            <td class="td-left" ><div style="width:540px;word-break:break-all;word-wrap: break-word; " >@log.OptRemark</div></td>          
+            <td class="td-center">@log.UserName</td>
+            <td class="td-center">@log.UserNickName</td>
+            <td class="td-center">@log.IP</td>
+              <td class="td-center">@log.OptTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            <td class="bg-gray td-center">
+           <!-- 修改/删除/权限管理 -->	
+            <a class="alink cursor"  onclick="if(confirm('您确定要删除吗?'))ajaxDelete('@log.LogID')">删除</a>
+            </td>
+          </tr>
+            }
+              
+          <tr>
+          <!-- 批处理 -->	
+            <td  align="center" >
+       
+            <input type="checkbox" id="selectAllItems" /> 
+            </td>
+            <td colspan="7" class="td-left  td-height">
+                <a class="button-del" href="javascript:void(0)" onclick="DeleteSome();"><span>批量删除</span></a>
+             清除 <input id="txt_ClearDateEnd" class="Wdate"
+                       maxlength="10" value="@DateTime.Now.AddYears(-1).ToString("yyyy-MM-dd")" onfocus=" return WdatePicker({ skin: 'whyGreen', maxDate: '%y-%M-%d' });" style="padding-left: 5px; width: 82px;"/> 前的日志 <a class="button-del" href="javascript:void(0)" onclick="DeleteBeforeDate()"><span>清 除</span></a>
+            </td>
+          </tr>     
+         
+          <tr>
+          <td colspan="8" align="center" class="td-height bg-white">
+
+          @Html.AjaxPager(Model, new PagerOptions()
+     {
+         PageIndexParameterName = "pageIndex",
+         ShowDisabledPagerItems = false,
+         ShowPageIndexBox = false,
+         AutoHide = false,
+         CurrentPagerItemWrapperFormatString = "<span class=\"cpb\">{0}</span>",
+         NumericPagerItemWrapperFormatString = "<span class=\"item\">{0}</span>",
+         CssClass = "page",
+         SeparatorHtml = ""
+     },
+          new AjaxOptions() { UpdateTargetId = "AdminLogList", OnBegin = "AjaxStart", OnComplete = "AjaxStop" })
+          <div class="page-cont">
+            <span> 共计：@{@Model.TotalItemCount}条</span>
+          </div>    
+</td></tr>}
+              else
+              {
+                  <tr><td colspan="8" class="NoneData">未查找到数据!</td></tr>
+              }
+           }
+        </table>
+<script language="javascript" type="text/javascript">
+   @if (Model != null)
+   {
+    @:global.CurrentIndex = @Model.CurrentPageIndex; //用于刷新时取得当前页
+        }
+</script>

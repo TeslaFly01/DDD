@@ -1,0 +1,124 @@
+﻿body {
+	margin:0px;
+	padding:0px;
+}
+
+/* *************                全局默认的控制样式     ******************* */
+td {
+	FONT-SIZE: 12px; 
+	LINE-HEIGHT: 28px; 
+	FONT-FAMILY: "宋体";
+}
+
+
+
+/* 表单详情按钮区域的样式 */
+
+
+/* 打印子表的标题 */
+
+.wquan_table { 
+		margin-top:-1px;   
+		width:100%;				/* 调整此宽度,必须同时调整  x_bill_main_table 的宽度 */
+		FONT-SIZE: 13px; 
+		LINE-HEIGHT: 13px; FONT-FAMILY: "宋体";
+		border-color:#000000;
+		border-style:solid;
+		border-bottom-width:2px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:2px;
+}
+
+.wquan_table_header_td_hh {  
+		TEXT-ALIGN: center;
+		border-color:#000000;
+		background-color:#dcdedd;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+.wquan_table_header_td {
+	   	TEXT-ALIGN: center;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		white-space:nowrap;
+		padding: 5px;
+		background-color:#dcdedd;
+}
+
+.wquan_table_row_td {
+		FONT: 13px 宋体; 
+		HEIGHT: 12px;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding-left: 5px;
+		padding-right: 5px;
+}
+.wquan_table_sumrow_td_hh {
+	   	TEXT-ALIGN: center;
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+.wquan_table_sumrow_td {
+		border-color:#000000;
+		border-style:solid;
+		LINE-HEIGHT: 13px; 
+		border-bottom-width:0px;
+		border-top-width:1px;
+		border-left-width:1px;
+		border-right-width:0px;
+		padding: 5px;
+}
+
+/* **************************** 详情打印的样式 ******************************************* */
+
+.wquan_body_title_td_1{
+	font-size:12px;
+	width:10%;
+	border-style:none;
+	padding:0px 10px 0px 10px;
+	text-align:left;
+	white-space:nowrap;
+	line-height:15px;
+	
+
+}
+.wquan_body_value_td_1{
+	font-size:12px;
+	border-style:none;
+    padding:0px 10px 0px 10px;
+	text-align:left;
+	line-height:20px;
+}
+
+.wquan_footer_table{
+	width:100%;
+	font-size:12px;
+}
+.wquan_footer_td {
+	font-size:12px;
+	padding-left:5px;
+	padding-right:5px;
+}
+

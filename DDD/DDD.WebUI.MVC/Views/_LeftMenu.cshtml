@@ -1,0 +1,23 @@
+﻿@using DDD.Domain.Model.Entities.Admin
+@model List<AdminModule>
+<div class="left-top">
+    @foreach (var item in Model.Where(x => x.FID == 0))
+    {
+        <div class="menu-main">
+            <div class="menu-title">
+                <span class="menu-title-down"></span>
+                @item.ModuleName
+            </div>
+            <div class="menu-body">
+                <ul>
+                    @foreach (var item1 in Model.Where(x => x.FID == item.AMID))
+                    {
+                        <li class="ll">
+                            <a href="javascript:getRequestId('@item1.PageUrl')" title='@item1.ModuleName'>@item1.ModuleName</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
