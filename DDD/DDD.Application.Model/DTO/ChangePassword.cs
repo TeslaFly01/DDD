@@ -33,7 +33,7 @@ namespace DDD.Application.Model.DTO
 
         [Required(ErrorMessage = "{0}不能为空!")]
         [DataType(DataType.Password)]
-        [Display(Name = "确认新密码")]
+        [Display(Name = "确认密码")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "与新密码不匹配!")]
         public string ConfirmPassword { get; set; }
     }
